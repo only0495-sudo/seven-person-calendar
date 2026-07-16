@@ -56,12 +56,12 @@ h1{margin:0;font-size:clamp(25px,4vw,38px)}.sub{margin:7px 0 0;color:var(--muted
 
 <script>
 const firebaseConfig={
- apiKey:"請貼上_API_KEY",
- authDomain:"請貼上_AUTH_DOMAIN",
- projectId:"請貼上_PROJECT_ID",
- storageBucket:"請貼上_STORAGE_BUCKET",
- messagingSenderId:"請貼上_MESSAGING_SENDER_ID",
- appId:"請貼上_APP_ID"
+ apiKey:"AIzaSyDejE9EGIvJkPsrmHUhquNWqAI03Bi_8H4",
+ authDomain:"calendar-f5fa5.firebaseapp.com",
+ projectId:"calendar-f5fa5",
+ storageBucket:"calendar-f5fa5.firebasestorage.app",
+ messagingSenderId:"894537608126",
+ appId:"1:894537608126:web:34312e5a2b5247798e67ef"
 };
 const PEOPLE=[
 {id:"wei",name:"瑋澤",color:"#4F7DF3"},{id:"he",name:"和欣",color:"#F26B7A"},
@@ -94,7 +94,7 @@ function friendly(e){const c=e&&e.code||"";if(c.includes("permission-denied"))re
 function exportData(){const payload={version:1,title:"七人共用行事曆",period:"2026-07-01 至 2026-09-30",exportedAt:new Date().toISOString(),people:PEOPLE,data};const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="七人共用行事曆_115年7至9月_備份.json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);toast("已送出備份下載")}
 async function clearMine(){if(!confirm(`確定清除「${person(selected).name}」全部標記？其他人的資料不會被刪除。`))return;if(mode==="local"){Object.keys(data).forEach(k=>{const s=normDay(data[k]);s.am=s.am.filter(x=>x!==selected);s.pm=s.pm.filter(x=>x!==selected);if(!s.am.length&&!s.pm.length)delete data[k];else data[k]=s});localStorage.setItem(LOCAL,JSON.stringify(data));render();return}if(!api||!user)return;locked=true;setStatus("saving","正在批次清除");renderMonths();try{const batch=api.writeBatch(api.db);Object.entries(data).forEach(([k,v])=>{const s=normDay(v);s.am=s.am.filter(x=>x!==selected);s.pm=s.pm.filter(x=>x!==selected);const ref=api.doc(api.db,"availability",k);if(!s.am.length&&!s.pm.length)batch.delete(ref);else batch.set(ref,{am:s.am,pm:s.pm,updatedAt:api.serverTimestamp(),updatedBy:user.uid})});await batch.commit();setStatus("online","已同步")}catch(e){setStatus("error","清除失敗");toast(friendly(e))}finally{locked=false;renderMonths()}}
 function localMode(){mode="local";els.banner.classList.add("show");setStatus("","本機示範模式");try{data=normData(JSON.parse(localStorage.getItem(LOCAL)||"{}"))}catch{data={}}render()}
-async function firebaseMode(){setStatus("","正在連接 Firebase");try{const[A,U,F]=await Promise.all([import("https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js"),import("https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js"),import("https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js")]);const app=A.initializeApp(firebaseConfig),auth=U.getAuth(app),db=F.getFirestore(app);await U.signInAnonymously(auth);user=auth.currentUser;if(!user)throw Error("匿名登入未完成");api={db,doc:F.doc,runTransaction:F.runTransaction,serverTimestamp:F.serverTimestamp,writeBatch:F.writeBatch};mode="firebase";setStatus("online","已連線");unsubscribe=F.onSnapshot(F.collection(db,"availability"),snap=>{const next={};snap.forEach(doc=>{if(/^2026-(07|08|09)-\d{2}$/.test(doc.id)){const s=normDay(doc.data());if(s.am.length||s.pm.length)next[doc.id]=s}});data=next;setStatus("online","已即時同步");render()},e=>{setStatus("error","讀取失敗");toast(friendly(e))})}catch(e){console.error(e);els.banner.classList.add("show");els.banner.innerHTML=`<strong>Firebase 連線失敗，已切換本機模式。</strong><br>${friendly(e)}`;localMode()}}
+async function firebaseMode(){setStatus("","正在連接 Firebase");try{const[A,U,F]=await Promise.all([import("https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js"),import("https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js"),import("https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js")]);const app=A.initializeApp(firebaseConfig),auth=U.getAuth(app),db=F.getFirestore(app);await U.signInAnonymously(auth);user=auth.currentUser;if(!user)throw Error("匿名登入未完成");api={db,doc:F.doc,runTransaction:F.runTransaction,serverTimestamp:F.serverTimestamp,writeBatch:F.writeBatch};mode="firebase";setStatus("online","已連線");unsubscribe=F.onSnapshot(F.collection(db,"availability"),snap=>{const next={};snap.forEach(doc=>{if(/^2026-(07|08|09)-\d{2}$/.test(doc.id)){const s=normDay(doc.data());if(s.am.length||s.pm.length)next[doc.id]=s}});data=next;setStatus("online","已即時同步");render()},e=>{setStatus("error","讀取失敗");toast(friendly(e))})}catch(e){console.error(e);els.banner.classList.add("show");els.banner.innerHTML=`<strong>Firebase 連線失敗，已切換本機模式。</strong><br>${friendly(e)}`;localMode()}}
 document.querySelectorAll(".period").forEach(b=>b.onclick=()=>{period=b.dataset.period;savePref();renderControls();renderSummary()});
 $("export").onclick=exportData;$("clearMine").onclick=clearMine;window.addEventListener("beforeunload",()=>unsubscribe&&unsubscribe());
 loadPref();render();configured()?firebaseMode():localMode();
