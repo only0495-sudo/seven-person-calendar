@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#243041">
-<title>七人共用行事曆｜民國115年7–9月</title>
+<title>七人共用行事曆｜民國115年8月</title>
 <style>
 :root{--bg:#f4f6fa;--card:#fff;--text:#202a39;--muted:#6e7889;--line:#dfe4ec;--soft:#eef1f6;--shadow:0 12px 34px rgba(36,48,65,.09)}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif}
-button{font:inherit}.page{width:min(1460px,calc(100% - 20px));margin:18px auto 46px}.panel,.month{background:var(--card);border-radius:20px;box-shadow:var(--shadow)}
+button{font:inherit}.page{width:min(1260px,calc(100% - 20px));margin:18px auto 46px}.panel,.month{background:var(--card);border-radius:20px;box-shadow:var(--shadow)}
 .panel{padding:22px;margin-bottom:17px}.titlebar{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;flex-wrap:wrap}
 h1{margin:0;font-size:clamp(25px,4vw,38px)}.sub{margin:7px 0 0;color:var(--muted);line-height:1.6}
 .status{display:flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;background:var(--soft);color:var(--muted);font-weight:800;font-size:14px}
@@ -21,23 +21,23 @@ h1{margin:0;font-size:clamp(25px,4vw,38px)}.sub{margin:7px 0 0;color:var(--muted
 .period.active{background:#243041;color:#fff}.tool.danger{background:#fff0f2;color:#b63d4b}.legend{margin-top:17px;color:var(--muted);font-size:13px;gap:9px 16px}
 .leg{display:flex;align-items:center;gap:6px}.dot{width:11px;height:11px;border-radius:50%;background:var(--c)}
 .help{margin-top:13px;padding:10px 13px;background:var(--soft);border-radius:12px;color:var(--muted);font-size:14px;line-height:1.6}.summary{margin-top:12px;color:var(--muted);font-size:13px}.summary strong{color:var(--text)}
-.months{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.month{padding:15px;min-width:0;overflow:hidden}.month h2{text-align:center;margin:0 0 12px;font-size:21px}
-.scroll{overflow-x:auto;padding-bottom:3px}.grid{display:grid;grid-template-columns:repeat(7,minmax(54px,1fr));gap:5px;min-width:430px}.weekday{text-align:center;padding:5px 0;color:var(--muted);font-size:12px;font-weight:900}
-.weekend{color:#c54c5b}.blank{min-height:108px;border-radius:10px;background:#f7f8fb}.day{position:relative;min-height:108px;padding:25px 4px 4px;border:1px solid var(--line);border-radius:10px;background:#fbfcfe;cursor:pointer;overflow:hidden;transition:.12s;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.months{display:grid;grid-template-columns:1fr;gap:16px}.month{width:100%;padding:22px;min-width:0;overflow:hidden}.month h2{text-align:center;margin:0 0 18px;font-size:30px}
+.scroll{overflow-x:auto;padding-bottom:4px}.grid{display:grid;grid-template-columns:repeat(7,minmax(115px,1fr));gap:9px;min-width:850px}.weekday{text-align:center;padding:8px 0;color:var(--muted);font-size:16px;font-weight:900}
+.weekend{color:#c54c5b}.blank{min-height:155px;border-radius:13px;background:#f7f8fb}.day{position:relative;min-height:155px;padding:34px 8px 8px;border:1px solid var(--line);border-radius:13px;background:#fbfcfe;cursor:pointer;overflow:hidden;transition:.12s;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .day:hover{transform:translateY(-2px);border-color:#aeb7c6;box-shadow:0 8px 18px rgba(36,48,65,.12);z-index:2}.day:disabled{opacity:.65;cursor:wait}.today{border:2px solid #efad2e}
-.num{position:absolute;top:4px;left:6px;font-size:13px;font-weight:950}.half{min-height:36px;display:grid;grid-template-columns:15px 1fr;gap:3px;padding:3px 1px}.half+.half{border-top:1px dashed #d7dce5}
-.hlabel{writing-mode:vertical-rl;color:#8a93a3;font-size:9px;font-weight:950;line-height:1;padding-top:2px}.chips{display:flex;flex-wrap:wrap;align-content:flex-start;gap:2px}
-.chip{--c:#777;display:inline-flex;padding:1px 4px;border-radius:999px;background:var(--c);color:#fff;font-size:8px;font-weight:900;white-space:nowrap}.empty{font-size:9px;color:#bec4ce;padding-top:2px}
+.num{position:absolute;top:7px;left:9px;font-size:18px;font-weight:950}.half{min-height:52px;display:grid;grid-template-columns:21px 1fr;gap:5px;padding:6px 2px}.half+.half{border-top:1px dashed #d7dce5}
+.hlabel{writing-mode:vertical-rl;color:#8a93a3;font-size:12px;font-weight:950;line-height:1;padding-top:3px}.chips{display:flex;flex-wrap:wrap;align-content:flex-start;gap:2px}
+.chip{--c:#777;display:inline-flex;padding:3px 7px;border-radius:999px;background:var(--c);color:#fff;font-size:12px;font-weight:900;white-space:nowrap}.empty{font-size:13px;color:#bec4ce;padding-top:4px}
 .toast{position:fixed;left:50%;bottom:23px;transform:translate(-50%,16px);opacity:0;pointer-events:none;z-index:20;background:#243041;color:#fff;padding:11px 16px;border-radius:12px;font-size:14px;font-weight:750;box-shadow:0 13px 32px rgba(0,0,0,.2);transition:.18s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:1120px){.months{grid-template-columns:1fr}.month{width:100%;max-width:920px;margin:auto}.grid{min-width:680px}.day,.blank{min-height:125px}.chip{font-size:10px;padding:2px 6px}}
-@media(max-width:720px){.page{width:calc(100% - 10px);margin-top:5px}.panel,.month{padding:13px;border-radius:15px}.controls{grid-template-columns:1fr}.grid{min-width:680px}}
+@media(max-width:1120px){.month{width:100%;margin:auto}.grid{grid-template-columns:repeat(7,minmax(105px,1fr));min-width:790px}.day,.blank{min-height:145px}}
+@media(max-width:720px){.page{width:calc(100% - 10px);margin-top:5px}.panel,.month{padding:13px;border-radius:15px}.controls{grid-template-columns:1fr}.month h2{font-size:25px}.grid{grid-template-columns:repeat(7,110px);min-width:800px;gap:7px}.day,.blank{min-height:148px}.weekday{font-size:14px}.chip{font-size:11px;padding:3px 6px}}
 </style>
 </head>
 <body>
 <main class="page">
 <section class="panel">
-<div class="titlebar"><div><h1>七人共用行事曆</h1><p class="sub">民國115年（西元2026年）7～9月｜上午、下午與全天</p></div><div id="status" class="status">正在初始化</div></div>
+<div class="titlebar"><div><h1>七人共用行事曆</h1><p class="sub">民國115年（西元2026年）8月｜上午、下午與全天</p></div><div id="status" class="status">正在初始化</div></div>
 <div id="banner" class="banner"><strong>目前是本機示範模式，尚未連接 Firebase。</strong><br>可以先測試操作，但其他人看不到這台裝置的資料。請依「GitHub與Firebase設定說明.txt」填入 Firebase 設定，再用 GitHub Pages 發布。</div>
 <div class="controls">
 <div>
@@ -68,14 +68,14 @@ const PEOPLE=[
 {id:"siyu",name:"思妤",color:"#1E9B82"},{id:"xiaoguo",name:"小郭",color:"#E58B00"},
 {id:"qiang",name:"強哥",color:"#8257D9"},{id:"pangyu",name:"胖魚",color:"#078FBF"},
 {id:"weishan",name:"韋杉",color:"#D9468F"}];
-const YEAR=2026,MONTHS=[7,8,9],WEEK=["日","一","二","三","四","五","六"],IDS=new Set(PEOPLE.map(x=>x.id));
-const LOCAL="seven_calendar_demo_v2",PREF="seven_calendar_pref_v2";
+const YEAR=2026,MONTHS=[8],WEEK=["日","一","二","三","四","五","六"],IDS=new Set(PEOPLE.map(x=>x.id));
+const LOCAL="seven_calendar_august_2026_v1",PREF="seven_calendar_august_pref_v1";
 let selected=PEOPLE[0].id,period="am",data={},mode="starting",user=null,api=null,locked=false,unsubscribe=null,pendingWrites=new Map();
 const $=id=>document.getElementById(id),els={status:$("status"),banner:$("banner"),people:$("people"),legend:$("legend"),months:$("months"),summary:$("summary"),toast:$("toast")};
 function configured(){return firebaseConfig.apiKey&&!firebaseConfig.apiKey.startsWith("請貼上_")&&firebaseConfig.projectId&&!firebaseConfig.projectId.startsWith("請貼上_")}
 function normList(v){return Array.isArray(v)?[...new Set(v.filter(x=>IDS.has(x)))]:[]}
 function normDay(v){return{am:normList(v&&v.am),pm:normList(v&&v.pm)}}
-function normData(v){const o={};if(!v||typeof v!=="object")return o;for(const[k,x]of Object.entries(v)){if(/^2026-(07|08|09)-\d{2}$/.test(k)){const s=normDay(x);if(s.am.length||s.pm.length)o[k]=s}}return o}
+function normData(v){const o={};if(!v||typeof v!=="object")return o;for(const[k,x]of Object.entries(v)){if(/^2026-08-\d{2}$/.test(k)){const s=normDay(x);if(s.am.length||s.pm.length)o[k]=s}}return o}
 function person(id){return PEOPLE.find(x=>x.id===id)}
 function setStatus(type,text){els.status.className="status"+(type?" "+type:"");els.status.textContent=text}
 let tt;function toast(t){clearTimeout(tt);els.toast.textContent=t;els.toast.classList.add("show");tt=setTimeout(()=>els.toast.classList.remove("show"),2200)}
@@ -156,10 +156,10 @@ async function toggleDate(key){
   }
 }
 function friendly(e){const c=e&&e.code||"";if(c.includes("permission-denied"))return"權限遭拒，請檢查匿名登入與規則";if(c.includes("unavailable"))return"網路暫時無法連線";return e&&e.message||"未知錯誤"}
-function exportData(){const payload={version:1,title:"七人共用行事曆",period:"2026-07-01 至 2026-09-30",exportedAt:new Date().toISOString(),people:PEOPLE,data};const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="七人共用行事曆_115年7至9月_備份.json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);toast("已送出備份下載")}
+function exportData(){const payload={version:1,title:"七人共用行事曆",period:"2026-08-01 至 2026-08-31",exportedAt:new Date().toISOString(),people:PEOPLE,data};const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="七人共用行事曆_115年8月_備份.json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);toast("已送出備份下載")}
 async function clearMine(){if(!confirm(`確定清除「${person(selected).name}」全部標記？其他人的資料不會被刪除。`))return;if(mode==="local"){Object.keys(data).forEach(k=>{const s=normDay(data[k]);s.am=s.am.filter(x=>x!==selected);s.pm=s.pm.filter(x=>x!==selected);if(!s.am.length&&!s.pm.length)delete data[k];else data[k]=s});localStorage.setItem(LOCAL,JSON.stringify(data));render();return}if(!api||!user)return;locked=true;setStatus("saving","正在批次清除");renderMonths();try{const batch=api.writeBatch(api.db);Object.entries(data).forEach(([k,v])=>{const s=normDay(v);s.am=s.am.filter(x=>x!==selected);s.pm=s.pm.filter(x=>x!==selected);const ref=api.doc(api.db,"availability",k);if(!s.am.length&&!s.pm.length)batch.delete(ref);else batch.set(ref,{am:s.am,pm:s.pm,updatedAt:api.serverTimestamp(),updatedBy:user.uid})});await batch.commit();setStatus("online","已同步")}catch(e){setStatus("error","清除失敗");toast(friendly(e))}finally{locked=false;renderMonths()}}
 function localMode(){mode="local";els.banner.classList.add("show");setStatus("","本機示範模式");try{data=normData(JSON.parse(localStorage.getItem(LOCAL)||"{}"))}catch{data={}}render()}
-async function firebaseMode(){setStatus("","正在連接 Firebase");try{const[A,U,F]=await Promise.all([import("https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js"),import("https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js"),import("https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js")]);const app=A.initializeApp(firebaseConfig),auth=U.getAuth(app),db=F.getFirestore(app);await U.signInAnonymously(auth);user=auth.currentUser;if(!user)throw Error("匿名登入未完成");api={db,doc:F.doc,runTransaction:F.runTransaction,serverTimestamp:F.serverTimestamp,writeBatch:F.writeBatch};mode="firebase";setStatus("online","已連線");unsubscribe=F.onSnapshot(F.collection(db,"availability"),snap=>{const next={};snap.forEach(doc=>{if(/^2026-(07|08|09)-\d{2}$/.test(doc.id)){const s=normDay(doc.data());if(s.am.length||s.pm.length)next[doc.id]=s}});data=mergePending(next);setStatus(pendingWrites.size?"saving":"online",pendingWrites.size?"正在儲存":"已即時同步");render()},e=>{setStatus("error","讀取失敗");toast(friendly(e))})}catch(e){console.error(e);els.banner.classList.add("show");els.banner.innerHTML=`<strong>Firebase 連線失敗，已切換本機模式。</strong><br>${friendly(e)}`;localMode()}}
+async function firebaseMode(){setStatus("","正在連接 Firebase");try{const[A,U,F]=await Promise.all([import("https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js"),import("https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js"),import("https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js")]);const app=A.initializeApp(firebaseConfig),auth=U.getAuth(app),db=F.getFirestore(app);await U.signInAnonymously(auth);user=auth.currentUser;if(!user)throw Error("匿名登入未完成");api={db,doc:F.doc,runTransaction:F.runTransaction,serverTimestamp:F.serverTimestamp,writeBatch:F.writeBatch};mode="firebase";setStatus("online","已連線");unsubscribe=F.onSnapshot(F.collection(db,"availability"),snap=>{const next={};snap.forEach(doc=>{if(/^2026-08-\d{2}$/.test(doc.id)){const s=normDay(doc.data());if(s.am.length||s.pm.length)next[doc.id]=s}});data=mergePending(next);setStatus(pendingWrites.size?"saving":"online",pendingWrites.size?"正在儲存":"已即時同步");render()},e=>{setStatus("error","讀取失敗");toast(friendly(e))})}catch(e){console.error(e);els.banner.classList.add("show");els.banner.innerHTML=`<strong>Firebase 連線失敗，已切換本機模式。</strong><br>${friendly(e)}`;localMode()}}
 document.querySelectorAll(".period").forEach(b=>b.onclick=()=>{period=b.dataset.period;savePref();renderControls();renderSummary()});
 $("export").onclick=exportData;$("clearMine").onclick=clearMine;window.addEventListener("beforeunload",()=>unsubscribe&&unsubscribe());
 loadPref();render();configured()?firebaseMode():localMode();
